@@ -1,0 +1,10 @@
+{
+    "imports": {
+      "grammy": "https://deno.land/x/grammy@v1.8.3/mod.ts",
+      "dotenv": "https://deno.land/std@0.182.0/dotenv/mod.ts",
+      "mongodb": "npm:mongodb"
+    },
+    "tasks": {
+      "start": "deno run --watch --allow-net --allow-env --allow-sys --allow-read --unstable poll.ts"
+    }
+  }
