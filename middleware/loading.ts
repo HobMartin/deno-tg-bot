@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _ from "npm:lodash";
 
 import { ANIME_GIF } from "../assets/gif.ts";
 import { replyToMessage } from "../lib/replyToMessage.ts";

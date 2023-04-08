@@ -1,13 +1,17 @@
 import { Context } from "https://deno.land/x/grammy@v1.8.3/context.ts";
-import { createCanvas, loadImage } from "canvas";
+
 import { InputFile } from "https://deno.land/x/grammy@v1.8.3/platform.deno.ts";
-import _ from "lodash";
+import _ from "npm:lodash";
 
 import { IMAGE_SET } from "../../../assets/background.ts";
 import { db } from "../../../db/index.ts";
 import { buildName } from "../../../lib/username.ts";
 import { getReputationTitle } from "../utils/reputation.ts";
 import { getEnv } from "../../../lib/getEnv.ts";
+import {
+  createCanvas,
+  loadImage,
+} from "https://deno.land/x/canvas@v1.4.1/mod.ts";
 
 const getRandomBackground = () => {
   return _.sample(IMAGE_SET);
