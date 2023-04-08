@@ -1,13 +1,13 @@
 import { MongoClient } from "mongodb";
-import { load } from "dotenv";
-const env = await load();
 
-const MONGO_URI = env["MONGO_URI"] || Deno.env.get("MONGO_URI");
+import { getEnv } from "../lib/getEnv.ts";
 
-const username = encodeURIComponent(env["username"] || "");
-const password = encodeURIComponent(env["password"] || "");
+const MONGO_URI = getEnv("MONGO_URI");
 
-const MONGO_DB = env["MONGO_DB"] || Deno.env.get("MONGO_DB") || "test";
+const username = encodeURIComponent(getEnv("username"));
+const password = encodeURIComponent(getEnv("password"));
+
+const MONGO_DB = getEnv("MONGO_DB") || "anime";
 if (!MONGO_URI) throw new Error("MONGO_URI not found");
 
 const URI = MONGO_URI.replace("<username>", username).replace(

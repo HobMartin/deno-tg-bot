@@ -4,6 +4,7 @@
     "https://cdn.skypack.dev/-/debug@v4.3.4-o4liVvMlOnQWbLSYZMXw/dist=es2019,mode=imports/optimized/debug.js": "671100993996e39b501301a87000607916d4d2d9f8fc8e9c5200ae5ba64a1389",
     "https://cdn.skypack.dev/-/ms@v2.1.2-giBDZ1IA5lmQ3ZXaa87V/dist=es2019,mode=imports/optimized/ms.js": "fd88e2d51900437011f1ad232f3393ce97db1b87a7844b3c58dd6d65562c1276",
     "https://cdn.skypack.dev/debug@4.3.4": "7b1d010cc930f71b940ba5941da055bc181115229e29de7214bdb4425c68ea76",
+    "https://deno.land/std@0.106.0/encoding/base64.ts": "eecae390f1f1d1cae6f6c6d732ede5276bf4b9cd29b1d281678c054dc5cc009e",
     "https://deno.land/std@0.136.0/_util/assert.ts": "e94f2eb37cebd7f199952e242c77654e43333c1ac4c5c700e929ea3aa5489f74",
     "https://deno.land/std@0.136.0/_util/os.ts": "49b92edea1e82ba295ec946de8ffd956ed123e2948d9bd1d3e901b04e4307617",
     "https://deno.land/std@0.136.0/async/deferred.ts": "bc18e28108252c9f67dfca2bbc4587c3cbf3aeb6e155f8c864ca8ecff992b98a",
@@ -29,6 +30,15 @@
     "https://deno.land/std@0.182.0/collections/filter_values.ts": "5b9feaf17b9a6e5ffccdd36cf6f38fa4ffa94cff2602d381c2ad0c2a97929652",
     "https://deno.land/std@0.182.0/collections/without_all.ts": "a89f5da0b5830defed4f59666e188df411d8fece35a5f6ca69be6ca71a95c185",
     "https://deno.land/std@0.182.0/dotenv/mod.ts": "8dcbc8a40b896a0bf094582aaeadbfc76d3528872faf2efc0302beb1d2f6afd0",
+    "https://deno.land/x/canvas@v1.4.1/deps.ts": "e956026d98094946166e06d7b799290b732db015813870d84e04e33ab88e98f3",
+    "https://deno.land/x/canvas@v1.4.1/mod.ts": "a4e16972647ceafef58612a377a218372454c99d2c9da615a132694597114f80",
+    "https://deno.land/x/canvas@v1.4.1/src/base64.ts": "0928031fdba0c43b617154fbe2eb7578366460c04da1422933ae5e936d3d0349",
+    "https://deno.land/x/canvas@v1.4.1/src/canvas.ts": "58119999b04f68ebeed2627485c5c24c5b0c029707edde0b6568814f9049a3a8",
+    "https://deno.land/x/canvas@v1.4.1/src/canvaskit.ts": "c3d807472cbb3e1d9fc01bb43ff974ef796c4b010178d1595be5fa793cce5e7d",
+    "https://deno.land/x/canvas@v1.4.1/src/color_util.ts": "28f1072f0a5acbe7add7fac2f452311a47b44c080806fc4057de2d2e405c6c1c",
+    "https://deno.land/x/canvas@v1.4.1/src/lib.js": "bb21711589bfbc8997b455cdf53e3150e23289f3b44809188041b1d2fc7924fa",
+    "https://deno.land/x/canvas@v1.4.1/src/types.ts": "67d5800f8f4b0a407e0251676a03ae91b5f50a3ed53e6b72dc5984113cb93128",
+    "https://deno.land/x/canvas@v1.4.1/src/wasm.js": "449d72cc14fc4142a5853f944df49a744d852981d09c5515528ede8aebb0afda",
     "https://deno.land/x/grammy@v1.8.3/bot.ts": "430a6dddeb0b6e016e5f46d5422f77415601960de461d1b8c8bc1db61fe1d635",
     "https://deno.land/x/grammy@v1.8.3/composer.ts": "355a140a29e20ba95310cc268779e42c17f8835e10935c3a49b5d055494c4a47",
     "https://deno.land/x/grammy@v1.8.3/context.ts": "3ca15397e5aaf3f98a0b90a18e6618f735f412e93b01728175e186f7b63084f4",
@@ -59,6 +69,7 @@
   },
   "npm": {
     "specifiers": {
+      "lodash": "lodash@4.17.21",
       "mongodb": "mongodb@5.2.0"
     },
     "packages": {
@@ -83,6 +94,10 @@
       },
       "ip@2.0.0": {
         "integrity": "sha512-WKa+XuLG1A1R0UWhl2+1XQSi+fZWMsYKffMZTTYsiZaUD8k2yDAj5atimTUD2TZkyCkNEeYE5NhFZmupOGtjYQ==",
+        "dependencies": {}
+      },
+      "lodash@4.17.21": {
+        "integrity": "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==",
         "dependencies": {}
       },
       "memory-pager@1.5.0": {

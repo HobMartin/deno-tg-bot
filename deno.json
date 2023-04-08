@@ -2,9 +2,10 @@
     "imports": {
       "grammy": "https://deno.land/x/grammy@v1.8.3/mod.ts",
       "dotenv": "https://deno.land/std@0.182.0/dotenv/mod.ts",
-      "mongodb": "npm:mongodb"
+      "canvas": "https://deno.land/x/canvas@v1.4.1/mod.ts",
+      "mongodb": "npm:mongodb",
+      "lodash": "npm:lodash"
     },
     "tasks": {
-      "start": "deno run --watch --allow-net --allow-env --allow-sys --allow-read --unstable poll.ts"
-    }
+      "start": "deno run --watch --allow-all --unstable poll.ts" }
   }

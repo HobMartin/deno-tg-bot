@@ -1,28 +1,20 @@
 import { Bot } from "grammy";
-import { load } from "dotenv";
-import { db } from "./db/index.ts";
 
-const env = await load();
+import Chat from "./features/chat/index.ts";
+import Admin from "./features/admin/index.ts";
+import { getEnv } from "./lib/getEnv.ts";
 
-export const bot = new Bot(env["BOT_TOKEN"] || Deno.env.get("BOT_TOKEN") || "");
+export const bot = new Bot(getEnv("BOT_TOKEN"));
 
-// set bot commands
 bot.api.setMyCommands([
   { command: "start", description: "Start the bot" },
   { command: "ping", description: "Ping the bot" },
 ]);
 
-bot.command("start", async (ctx) => {
-  console.log(ctx.from);
+bot.use(Chat);
+bot.use(Admin);
 
-  if (ctx.from) {
-    await db.collection("users").insertOne({
-      userId: ctx.from.id,
-      username: ctx.from.username,
-      firstName: ctx.from.first_name,
-      lastName: ctx.from.last_name,
-    });
-  }
+bot.command("start", (ctx) => {
   ctx.reply("Welcome! Up and running.");
 });
 
