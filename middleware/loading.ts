@@ -1,8 +1,11 @@
-import { Context, NextFunction } from "grammy";
 import _ from "lodash";
 
 import { ANIME_GIF } from "../assets/gif.ts";
 import { replyToMessage } from "../lib/replyToMessage.ts";
+import {
+  Context,
+  NextFunction,
+} from "https://deno.land/x/grammy@v1.8.3/mod.ts";
 
 const getRandomGif = () => {
   return _.sample(ANIME_GIF);

@@ -1,4 +1,7 @@
-import { Context, NextFunction } from "grammy";
+import {
+  Context,
+  NextFunction,
+} from "https://deno.land/x/grammy@v1.8.3/mod.ts";
 import { db } from "../db/index.ts";
 
 export async function addUser(

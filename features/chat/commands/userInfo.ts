@@ -1,4 +1,4 @@
-import { Context } from "grammy";
+import { Context } from "https://deno.land/x/grammy@v1.8.3/context.ts";
 import { createCanvas, loadImage } from "canvas";
 import { InputFile } from "https://deno.land/x/grammy@v1.8.3/platform.deno.ts";
 import _ from "lodash";

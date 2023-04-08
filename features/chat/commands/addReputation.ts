@@ -1,4 +1,4 @@
-import { Context } from "grammy";
+import { Context } from "https://deno.land/x/grammy@v1.8.3/mod.ts";
 import { db } from "../../../db/index.ts";
 import { mention } from "../../../lib/username.ts";
 import { getRandomNumber } from "../../../lib/getRandomNumber.ts";
