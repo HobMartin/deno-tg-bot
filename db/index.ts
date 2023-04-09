@@ -1,4 +1,4 @@
-import { MongoClient } from "npm:mongodb";
+import { MongoClient } from "https://unpkg.com/mongodb@5.2.0/src/index.ts";
 import { getEnv } from "../lib/getEnv.ts";
 
 const MONGO_URI = getEnv("MONGO_URI");
