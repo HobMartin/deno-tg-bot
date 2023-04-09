@@ -8,9 +8,11 @@ import { buildName } from "../../../lib/username.ts";
 import { getReputationTitle } from "../utils/reputation.ts";
 import { getEnv } from "../../../lib/getEnv.ts";
 import {
+  Canvas,
+  CanvasRenderingContext2D,
   createCanvas,
-  loadImage,
-} from "https://deno.land/x/canvas@v1.4.1/mod.ts";
+  Image,
+} from "https://deno.land/x/skia_canvas@0.5.2/mod.ts";
 
 const getRandomBackground = () => {
   const randomIndex = Math.floor(Math.random() * IMAGE_SET.length);
@@ -18,6 +20,27 @@ const getRandomBackground = () => {
 };
 
 const IMAGE_SIZE = 200;
+
+function fitTextOnCanvas(
+  text: string,
+  fontFace: string,
+  padding: number,
+  yPosition: number,
+  canvas: Canvas,
+  context: CanvasRenderingContext2D
+) {
+  // start with a large font size
+  let fontsize = 34;
+
+  // lower the font size until the text fits the canvas
+  do {
+    fontsize--;
+    context.font = fontsize + "px " + fontFace;
+  } while (context.measureText(text).width > canvas.width - padding * 2);
+
+  // draw the text
+  context.fillText(text, padding, yPosition);
+}
 
 export const userInfo = async (_ctx: Context) => {
   const user = await db.collection("users").findOne({ userId: _ctx.from?.id });
@@ -30,7 +53,7 @@ export const userInfo = async (_ctx: Context) => {
   const canvas = createCanvas(300, 400);
   const ctx = canvas.getContext("2d");
 
-  const background = await loadImage(getRandomBackground());
+  const background = await Image.load(getRandomBackground());
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
   // add rect for text
@@ -38,12 +61,25 @@ export const userInfo = async (_ctx: Context) => {
   ctx.fillRect(0, 40, canvas.width, 120);
 
   ctx.fillStyle = "#ffffff";
-  ctx.font = "36px Arial";
 
-  ctx.fillText(`${buildName(_ctx.from)}`, 50, 80);
+  fitTextOnCanvas(
+    buildName(_ctx.from) ?? "",
+    "Arial Unicode MS",
+    50,
+    80,
+    canvas,
+    ctx
+  );
 
   ctx.font = "24px Arial";
-  ctx.fillText(`${getReputationTitle(user.reputation)}`, 50, 110);
+  fitTextOnCanvas(
+    `${getReputationTitle(user.reputation)}`,
+    "Arial Unicode MS",
+    50,
+    110,
+    canvas,
+    ctx
+  );
   // Set the font size for the reputation
   ctx.font = "24px Arial";
 
@@ -70,14 +106,12 @@ export const userInfo = async (_ctx: Context) => {
   ctx.lineWidth = 5;
   ctx.strokeStyle = "#ffffff";
 
-  ctx.arc(IMAGE_SIZE - 50, 280, IMAGE_SIZE / 2, 0, 2 * Math.PI);
+  ctx.arc(IMAGE_SIZE - 50, 280, IMAGE_SIZE / 2, 0, 2 * Math.PI, false);
   ctx.stroke();
   ctx.clip();
   ctx.closePath();
-  const img = await loadImage(url as string);
+  const img = await Image.load(url as string);
   ctx.drawImage(img, 50, 180, IMAGE_SIZE, IMAGE_SIZE);
 
-  await Deno.writeFile("image.png", canvas.toBuffer());
-
-  await _ctx.replyWithPhoto(new InputFile(canvas.toBuffer(), "image.png"));
+  await _ctx.replyWithPhoto(new InputFile(canvas.encode(), "image.png"));
 };
