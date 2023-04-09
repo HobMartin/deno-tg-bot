@@ -1,5 +1,3 @@
-import _ from "npm:lodash";
-
 import { ANIME_GIF } from "../assets/gif.ts";
 import { replyToMessage } from "../lib/replyToMessage.ts";
 import {
@@ -8,7 +6,8 @@ import {
 } from "https://deno.land/x/grammy@v1.8.3/mod.ts";
 
 const getRandomGif = () => {
-  return _.sample(ANIME_GIF);
+  const randomIndex = Math.floor(Math.random() * ANIME_GIF.length);
+  return ANIME_GIF[randomIndex];
 };
 
 export const loading = async (ctx: Context, next: NextFunction) => {

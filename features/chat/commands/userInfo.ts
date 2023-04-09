@@ -1,7 +1,6 @@
 import { Context } from "https://deno.land/x/grammy@v1.8.3/context.ts";
 
 import { InputFile } from "https://deno.land/x/grammy@v1.8.3/platform.deno.ts";
-import _ from "npm:lodash";
 
 import { IMAGE_SET } from "../../../assets/background.ts";
 import { db } from "../../../db/index.ts";
@@ -14,7 +13,8 @@ import {
 } from "https://deno.land/x/canvas@v1.4.1/mod.ts";
 
 const getRandomBackground = () => {
-  return _.sample(IMAGE_SET);
+  const randomIndex = Math.floor(Math.random() * IMAGE_SET.length);
+  return IMAGE_SET[randomIndex];
 };
 
 const IMAGE_SIZE = 200;
