@@ -1,22 +1,19 @@
-import { MongoClient } from "https://unpkg.com/mongodb@5.2.0/src/index.ts";
+import { MongoClient } from "https://deno.land/x/mongo@v0.31.2/mod.ts";
 import { getEnv } from "../lib/getEnv.ts";
 
 const MONGO_URI = getEnv("MONGO_URI");
 
-const username = encodeURIComponent(getEnv("username"));
-const password = encodeURIComponent(getEnv("password"));
-
 const MONGO_DB = getEnv("MONGO_DB") || "anime";
 if (!MONGO_URI) throw new Error("MONGO_URI not found");
 
-const URI = MONGO_URI.replace("<username>", username).replace(
-  "<password>",
-  password
-);
-
 // connect to mongodb
-const client = new MongoClient(URI);
+const client = new MongoClient();
+try {
+  await client.connect(MONGO_URI);
+} catch (e) {
+  console.log(MONGO_URI);
 
-await client.connect();
+  console.log(e);
+}
 
-export const db = client.db(MONGO_DB);
+export const db = client.database(MONGO_DB);

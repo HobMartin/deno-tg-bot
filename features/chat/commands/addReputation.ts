@@ -45,24 +45,29 @@ export const addReputation = async (ctx: Context) => {
 
   try {
     const reputationInc = getRandomNumber();
-    const toUser = await db
+    await db
       .collection("users")
-      .findOneAndUpdate(
+      .updateOne(
         { userId: reply.from?.id },
         { $inc: { reputation: reputationInc } }
       );
-    const fromUser = await db
+    await db
       .collection("users")
-      .findOneAndUpdate(
+      .updateOne(
         { userId: from?.id },
         { $set: { lastReputation: Date.now() } }
       );
 
+    const toUser = await db
+      .collection("users")
+      .findOne({ userId: reply.from?.id });
+    const fromUser = await db.collection("users").findOne({ userId: from?.id });
+
     ctx.reply(
       `🥳 ${mention(from)}(${
-        fromUser?.value?.reputation
+        fromUser?.reputation
       }) збільшив(-ла) репутацію ${mention(reply.from)}(${
-        toUser.value?.reputation
+        toUser?.reputation
       }) на ${getPostfix(reputationInc)}.`,
       { parse_mode: "HTML" }
     );
