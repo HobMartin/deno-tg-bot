@@ -1,4 +1,4 @@
-import { User } from "https://deno.land/x/grammy@v1.8.3/platform.deno.ts";
+import { User } from "../deps.deno.ts";
 
 export function buildName(from?: User) {
   if (!from?.first_name && !from?.last_name) return;

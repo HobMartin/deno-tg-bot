@@ -1,5 +1,3 @@
-// 1 == 100%
-// 2 == 100%
 export function getRandomNumber(): number {
   const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const weights = [1, 1, 1, 0.8, 0.8, 0.7, 0.7, 0.5, 0.5, 0.3];

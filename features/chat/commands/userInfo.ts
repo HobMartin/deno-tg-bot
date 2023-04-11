@@ -1,18 +1,17 @@
-import { Context } from "https://deno.land/x/grammy@v1.8.3/context.ts";
-
-import { InputFile } from "https://deno.land/x/grammy@v1.8.3/platform.deno.ts";
+import {
+  Context,
+  InputFile,
+  Canvas,
+  CanvasRenderingContext2D,
+  createCanvas,
+  Image,
+} from "../../../deps.deno.ts";
 
 import { IMAGE_SET } from "../../../assets/background.ts";
 import { db } from "../../../db/index.ts";
 import { buildName } from "../../../lib/username.ts";
 import { getReputationTitle } from "../utils/reputation.ts";
 import { getEnv } from "../../../lib/getEnv.ts";
-import {
-  Canvas,
-  CanvasRenderingContext2D,
-  createCanvas,
-  Image,
-} from "https://deno.land/x/skia_canvas@0.5.2/mod.ts";
 
 const getRandomBackground = () => {
   const randomIndex = Math.floor(Math.random() * IMAGE_SET.length);
@@ -44,7 +43,6 @@ function fitTextOnCanvas(
 
 export const userInfo = async (_ctx: Context) => {
   const user = await db.collection("users").findOne({ userId: _ctx.from?.id });
-  console.log(user);
 
   if (!user) {
     return _ctx.reply("User not found");

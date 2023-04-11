@@ -1,7 +1,4 @@
-import {
-  Context,
-  NextFunction,
-} from "https://deno.land/x/grammy@v1.8.3/mod.ts";
+import { Context, NextFunction } from "../deps.deno.ts";
 
 export const adminOnly = async (
   { message, api }: Context,

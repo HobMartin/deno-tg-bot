@@ -1,4 +1,4 @@
-import { Bot } from "https://deno.land/x/grammy@v1.8.3/mod.ts";
+import { Bot } from "./deps.deno.ts";
 
 import Chat from "./features/chat/index.ts";
 import Admin from "./features/admin/index.ts";

@@ -1,19 +1,22 @@
-import { serve } from "https://deno.land/std@0.154.0/http/server.ts";
+import { serve, webhookCallback } from "./deps.deno.ts";
 import { bot } from "./bot.ts";
-import { webhookCallback } from "https://deno.land/x/grammy@v1.8.3/mod.ts";
 
+const port = 8000;
 const handleUpdate = webhookCallback(bot, "std/http");
 
-serve(async (req) => {
-  if (req.method == "POST") {
-    const url = new URL(req.url);
-    if (url.pathname.slice(1) == bot.token) {
-      try {
-        return await handleUpdate(req);
-      } catch (err) {
-        console.error(err);
+serve(
+  async (req) => {
+    if (req.method == "POST") {
+      const url = new URL(req.url);
+      if (url.pathname.slice(1) == bot.token) {
+        try {
+          return await handleUpdate(req);
+        } catch (err) {
+          console.error(err);
+        }
       }
     }
-  }
-  return new Response();
-});
+    return new Response();
+  },
+  { port }
+);

@@ -1,9 +1,6 @@
 import { ANIME_GIF } from "../assets/gif.ts";
 import { replyToMessage } from "../lib/replyToMessage.ts";
-import {
-  Context,
-  NextFunction,
-} from "https://deno.land/x/grammy@v1.8.3/mod.ts";
+import { Context, NextFunction } from "../deps.deno.ts";
 
 const getRandomGif = () => {
   const randomIndex = Math.floor(Math.random() * ANIME_GIF.length);

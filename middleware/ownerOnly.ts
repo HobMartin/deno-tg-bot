@@ -1,7 +1,4 @@
-import {
-  Context,
-  NextFunction,
-} from "https://deno.land/x/grammy@v1.8.3/mod.ts";
+import { Context, NextFunction } from "../deps.deno.ts";
 import { getEnv } from "../lib/getEnv.ts";
 
 // middleware for owner only

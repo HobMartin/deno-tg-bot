@@ -1,4 +1,4 @@
-import { Context } from "https://deno.land/x/grammy@v1.8.3/mod.ts";
+import { Context } from "../../../deps.deno.ts";
 import { buildName } from "../../../lib/username.ts";
 
 export const mentionsAdmins = async (ctx: Context) => {

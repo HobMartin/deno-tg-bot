@@ -1,4 +1,4 @@
-import { Composer } from "https://deno.land/x/grammy@v1.8.3/composer.ts";
+import { Composer } from "../../deps.deno.ts";
 import { addUser } from "../../middleware/addUser.ts";
 import { loading } from "../../middleware/loading.ts";
 
