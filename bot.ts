@@ -1,4 +1,4 @@
-import { Bot } from "./deps.deno.ts";
+import { Bot, GrammyError, HttpError } from "./deps.deno.ts";
 
 import Chat from "./features/chat/index.ts";
 import Admin from "./features/admin/index.ts";
@@ -19,3 +19,16 @@ bot.command("start", (ctx) => {
 });
 
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()} ${Date.now()}`));
+
+bot.catch((err) => {
+  const ctx = err.ctx;
+  console.error(`Error while handling update ${ctx.update.update_id}:`);
+  const e = err.error;
+  if (e instanceof GrammyError) {
+    console.error("Error in request:", e.description);
+  } else if (e instanceof HttpError) {
+    console.error("Could not contact Telegram:", e);
+  } else {
+    console.error("Unknown error:", e);
+  }
+});

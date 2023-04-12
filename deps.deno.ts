@@ -1,4 +1,9 @@
-export { Bot, webhookCallback } from "https://deno.land/x/grammy@v1.8.3/mod.ts";
+export {
+  Bot,
+  webhookCallback,
+  GrammyError,
+  HttpError,
+} from "https://deno.land/x/grammy@v1.8.3/mod.ts";
 export { Composer } from "https://deno.land/x/grammy@v1.8.3/composer.ts";
 export { InputFile } from "https://deno.land/x/grammy@v1.8.3/platform.deno.ts";
 
