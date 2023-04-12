@@ -12,10 +12,16 @@ import { db } from "../../../db/index.ts";
 import { buildName } from "../../../lib/username.ts";
 import { getReputationTitle } from "../utils/reputation.ts";
 import { getEnv } from "../../../lib/getEnv.ts";
+import { DEFAULT_AVATAR } from "../../../assets/avatar.ts";
 
 const getRandomBackground = () => {
   const randomIndex = Math.floor(Math.random() * IMAGE_SET.length);
   return IMAGE_SET[randomIndex];
+};
+
+const getRandomAvatar = () => {
+  const randomIndex = Math.floor(Math.random() * DEFAULT_AVATAR.length);
+  return DEFAULT_AVATAR[randomIndex];
 };
 
 const IMAGE_SIZE = 200;
@@ -108,7 +114,7 @@ export const userInfo = async (_ctx: Context) => {
   ctx.stroke();
   ctx.clip();
   ctx.closePath();
-  const img = await Image.load(url as string);
+  const img = await Image.load(url ?? getRandomAvatar());
   ctx.drawImage(img, 50, 180, IMAGE_SIZE, IMAGE_SIZE);
 
   await _ctx.replyWithPhoto(new InputFile(canvas.encode(), "image.png"));

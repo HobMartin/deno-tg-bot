@@ -14,7 +14,12 @@ export const loading = async (ctx: Context, next: NextFunction) => {
     parse_mode: "HTML",
     ...replyToMessage(ctx),
   });
-  await next();
-  if (ctx.message?.chat.id)
-    await ctx.api.deleteMessage(ctx.message?.chat.id, loadingGif.message_id);
+  try {
+    await next();
+  } catch (e) {
+    console.log(e);
+  } finally {
+    if (ctx.message?.chat.id)
+      await ctx.api.deleteMessage(ctx.message?.chat.id, loadingGif.message_id);
+  }
 };
