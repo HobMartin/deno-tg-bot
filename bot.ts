@@ -7,8 +7,7 @@ import { getEnv } from "./lib/getEnv.ts";
 export const bot = new Bot(getEnv("BOT_TOKEN"));
 
 bot.api.setMyCommands([
-  { command: "start", description: "Start the bot" },
-  { command: "ping", description: "Ping the bot" },
+  { command: "user_info", description: "Подивись на себе, який ти крутий!" },
 ]);
 
 bot.use(Chat);
