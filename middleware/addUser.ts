@@ -14,6 +14,7 @@ export async function addUser(
     firstName: _ctx.from?.first_name,
     lastName: _ctx.from?.last_name,
     reputation: 0,
+    messages: 0,
   });
   await next();
 }
