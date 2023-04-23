@@ -116,6 +116,5 @@ export const userInfo = async (_ctx: Context) => {
   ctx.closePath();
   const img = await Image.load(url ?? getRandomAvatar());
   ctx.drawImage(img, 50, 180, IMAGE_SIZE, IMAGE_SIZE);
-
-  await _ctx.replyWithPhoto(new InputFile(canvas.encode(), "image.png"));
+  await _ctx.replyWithSticker(new InputFile(canvas.encode()));
 };
