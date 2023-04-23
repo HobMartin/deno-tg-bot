@@ -3,12 +3,20 @@ import { Bot, GrammyError, HttpError } from "./deps.deno.ts";
 import Chat from "./features/chat/index.ts";
 import Admin from "./features/admin/index.ts";
 import { getEnv } from "./lib/getEnv.ts";
+import { countMessages } from "./middleware/messageCount.ts";
+import { addUser } from "./middleware/addUser.ts";
 
 export const bot = new Bot(getEnv("BOT_TOKEN"));
 
 bot.api.setMyCommands([
   { command: "user_info", description: "Подивись на себе, який ти крутий!" },
+  {
+    command: "mention_all",
+    description: "Виклик всіх учасників (доступно лише адмінам)",
+  },
 ]);
+
+bot.use(addUser, countMessages);
 
 bot.use(Chat);
 bot.use(Admin);

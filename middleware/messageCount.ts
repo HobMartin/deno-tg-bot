@@ -1,14 +1,23 @@
-import { db } from "../../../db/index.ts";
-import { Context } from "../../../deps.deno.ts";
-import { replyToMessage } from "../../../lib/replyToMessage.ts";
-import { mention } from "../../../lib/username.ts";
+import { db } from "../db/index.ts";
+import { Context, NextFunction } from "../deps.deno.ts";
+import { replyToMessage } from "../lib/replyToMessage.ts";
+import { mention } from "../lib/username.ts";
 
-export const countMessages = async (ctx: Context) => {
-  if (!ctx.message) return;
-  if (ctx.message.from?.is_bot) return;
+export const countMessages = async (ctx: Context, next: NextFunction) => {
+  if (!ctx.message) return next();
+  if (ctx.message.from?.is_bot) return next();
 
-  if (ctx.message?.text?.trim().length && ctx.message?.text?.trim().length <= 3)
-    return;
+  const checkValidMessage =
+    ctx.message?.sticker ||
+    ctx.message?.photo ||
+    ctx.message?.video ||
+    ctx.message?.audio ||
+    ctx.message?.voice ||
+    ctx.message?.document ||
+    (ctx.message?.text && ctx.message?.text?.trim().length >= 3);
+
+  //check if message isn't a command
+  if (!checkValidMessage) return next();
 
   try {
     await db.collection("users").updateOne(
@@ -41,5 +50,7 @@ export const countMessages = async (ctx: Context) => {
     }
   } catch (_e) {
     ctx.reply("Щось пішло не так, спробуйте ще раз!");
+  } finally {
+    await next();
   }
 };

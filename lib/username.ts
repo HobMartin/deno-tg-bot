@@ -9,3 +9,7 @@ export function mention(from?: User) {
   if (!from?.id) return;
   return `<a href="tg://user?id=${from.id}">${buildName(from)}</a>`;
 }
+
+export function hiddenMention(userId: number) {
+  return `<a href="tg://user?id=${userId}">⁠</a>`;
+}
