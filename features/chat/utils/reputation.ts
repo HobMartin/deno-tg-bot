@@ -19,6 +19,9 @@ const reputationTitles: ReputationTitle[] = [
 ];
 
 export function getReputationTitle(rep: number) {
-  const title = reputationTitles.find((title) => rep >= title.minReputation);
+  const title = reputationTitles
+    .slice()
+    .reverse()
+    .find((title) => title.minReputation <= rep);
   return title ? title.title : null;
 }
